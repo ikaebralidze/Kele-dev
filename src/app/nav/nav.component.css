@@ -1,0 +1,77 @@
+nav {
+  background-color: rgb(246, 246, 246, 0.6);
+  position: fixed;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  /* height: 2rem; */
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  user-select: none;
+}
+
+.disable {
+  display: none;
+}
+.button {
+  border-radius: 20px;
+  background-color: #c9dbb2;
+  border-color: #c9dbb2;
+}
+
+.expend {
+  height: auto;
+  width: 100%;
+  padding-bottom: 2rem;
+}
+
+.light-blue {
+  color: #496f8c;
+}
+.logo:visited {
+  color: black;
+}
+
+.navbar-link {
+  border-radius: 6px 6px 0 0;
+}
+
+.navbar-start :last-child {
+  border-radius: 6px;
+}
+
+.navbar-brand > div {
+  display: none;
+}
+
+@media screen and (max-width: 1023px) {
+  nav {
+    padding: 0.5rem 0.5rem;
+  }
+  .navbar-brand {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10fr 2fr 1fr;
+  }
+  .navbar-link:hover {
+    background-color: transparent;
+    color: #537188;
+  }
+  .navbar-item:hover {
+    background-color: transparent;
+  }
+  .navbar-link:not(.is-arrowless)::after {
+    border-color: #537188;
+  }
+
+  a:hover {
+    background-color: transparent;
+  }
+  .disable {
+    display: initial;
+  }
+  .navbar-brand > div {
+    display: initial;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "kele-construction": {
+      "hosting": {
+        "Kele-dev": [
+          "kele-construction"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "kele-construction"
+  }
+}

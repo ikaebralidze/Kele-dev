@@ -1,0 +1,71 @@
+:host {
+  position: relative;
+  top: -140px;
+  z-index: 10;
+  margin: 0;
+  display: inline;
+}
+
+.container {
+  padding-top: 3rem;
+  display: flex;
+  justify-self: start;
+  gap: 1rem;
+  border-radius: 20px;
+  position: relative;
+  height: 11rem;
+  width: 70%;
+  background-color: white;
+  /* padding: 300px; */
+  max-width: none;
+  padding-left: 5rem;
+  margin-left: 0;
+  left: -50px;
+}
+
+.button {
+  background-color: #c9dbb2;
+}
+
+.find-button {
+  background-color: #a4d0a4;
+  border: none;
+}
+
+.dropdown-trigger,
+.dropdown {
+  height: 3rem;
+}
+
+.cards {
+  padding: 2rem;
+  width: 100%;
+  display: grid;
+  gap: 2rem;
+
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media screen and (max-width: 1023px) {
+  .container {
+    justify-content: center;
+    margin: auto;
+    width: 100%;
+    left: 0;
+    padding-left: 0;
+  }
+  .find-button {
+    position: absolute;
+    top: 7rem;
+    width: 8rem;
+  }
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

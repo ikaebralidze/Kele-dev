@@ -1,0 +1,22 @@
+<form class="container" [formGroup]="form" (submit)="onSubmit()" (change)="optionChanged()">
+
+
+    <app-dropdown-button [form]="form.controls[data[0].type]" [data]="data[0]">
+
+    </app-dropdown-button>
+    <app-dropdown-button [form]="form.controls[data[1].type]" [data]="data[1]">
+
+    </app-dropdown-button>
+    <app-dropdown-button [form]="form.controls[data[2].type]" [data]="data[2]">
+
+    </app-dropdown-button>
+
+    <button class="button find-button">Find</button>
+
+</form>
+
+<div class="cards">
+    <ng-container *ngFor="let listItem of filteredProjects">
+        <app-projects [data]="listItem" *ngIf="showProjects"></app-projects>
+    </ng-container>
+</div>

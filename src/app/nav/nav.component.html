@@ -1,0 +1,108 @@
+<nav class="navbar" [ngClass]="{'expend': burgerMenu, 'blur': burgerMenu}">
+    <div class="navbar-brand">
+        <a routerLink="" class="navbar-item logo" (click)="burgerMenu = false">
+            <b>KELE LOGO</b>
+        </a>
+
+        <div class="navbar-item">
+            <div class="buttons">
+                <a routerLink="contact-us" class="button">
+                    <strong>Contact us</strong>
+                </a>
+            </div>
+        </div>
+
+        <a role="button" class="navbar-burger" (click)="burgerDropDown()" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+
+
+    </div>
+    <!-- after burger menu -->
+    <ng-container *ngIf="burgerMenu">
+
+        <ul class="menu-list disable">
+
+
+            <li>
+                <a class="navbar-link" (click)="currentClicked()">
+                    <strong class="light-blue">Current Projects</strong>
+                </a>
+                <ul *ngIf="currentdropDown" (click)="burgerDropDown()">
+                    <ng-container *ngFor="let project of currentProjects">
+
+                        <li [routerLink]="['/', 'project', project.id]"><a>{{project.title}}</a></li>
+                    </ng-container>
+                </ul>
+            </li>
+
+            <li>
+                <h4 class="navbar-link" (click)="completClicked()">
+                    <strong class="light-blue">Complet Projects</strong>
+                </h4>
+                <ul *ngIf="completdropDown" (click)="burgerDropDown()">
+                    <ng-container *ngFor="let project of completeProjects">
+                        <li [routerLink]="['/', 'project', project.id]"><a>{{project.title}}</a></li>
+                    </ng-container>
+                </ul>
+            </li>
+            <div (click)="burgerDropDown()">
+                <a class="navbar-item light-blue" routerLink="about-us"><strong class="orange">About Us</strong></a>
+                <a routerLink="contact-us" class="navbar-item light-blue"><strong class="light-blue">contact
+                        us</strong></a>
+                <a class="navbar-item light-blue" routerLink="news"><strong class="light-blue">News</strong></a>
+            </div>
+        </ul>
+    </ng-container>
+
+
+    <div class="navbar-menu">
+        <div class="navbar-start">
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Current Projects
+                </a>
+
+                <div class="navbar-dropdown">
+                    <ng-container *ngFor="let project of currentProjects">
+                        <a class="navbar-item" [routerLink]="['/', 'project', project.id]">{{project.title}}</a>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Complete Projects
+                </a>
+
+                <div class="navbar-dropdown">
+                    <ng-container *ngFor="let project of completeProjects">
+                        <a class="navbar-item" [routerLink]="['/', 'project', project.id]">{{project.title}}</a>
+                    </ng-container>
+
+                </div>
+            </div>
+            <a class="navbar-item" routerLink="about-us">
+                About Company
+            </a>
+
+        </div>
+
+
+
+
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a routerLink="contact-us" class="button">
+                        <strong>Contact us</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</nav>

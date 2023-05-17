@@ -1,0 +1,18 @@
+<section aria-label="Newest Photos">
+    <div class="carousel">
+        <ul>
+            <ng-container *ngFor="let img of imgUrl; let i = index">
+                <li class="slide" [ngClass]="{'slide-active': i === currentIndex }">
+                    <img [src]="img" alt="">
+                </li>
+
+            </ng-container>
+        </ul>
+        <ul class="dot-list">
+            <ng-container *ngFor="let img of imgUrl; let i = index">
+                <li class="dot" [ngClass]="{'dot-active': i=== currentIndex}" (click)="currentIndex = i">&#x2022;</li>
+            </ng-container>
+        </ul>
+    </div>
+</section>
+<app-house-selection></app-house-selection>

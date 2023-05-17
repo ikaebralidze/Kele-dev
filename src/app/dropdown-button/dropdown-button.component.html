@@ -1,0 +1,10 @@
+<div class="select is-success is-small" (change)="changed()">
+    <select [formControl]="form">
+        <option selected>{{data.type}}</option>
+        <ng-container *ngFor="let option of data.option">
+            <option class="dropdown-item">
+                {{option}}
+            </option>
+        </ng-container>
+    </select>
+</div>
