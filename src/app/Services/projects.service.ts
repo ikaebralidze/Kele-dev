@@ -3,19 +3,19 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
-import { IData, Projects } from '../model/projects.modal';
-import { async, map, tap } from 'rxjs';
+import { Projects } from '../model/projects.modal';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectsService {
-  public projectsCollection: AngularFirestoreCollection;
+  // public projectsCollection: AngularFirestoreCollection;
   projects: Projects[] = [];
   reqPending = false;
 
   constructor(private afs: AngularFirestore) {
-    this.projectsCollection = afs.collection('projects');
+    // this.projectsCollection = afs.collection('projects');
   }
 
   addProject(project: Projects) {

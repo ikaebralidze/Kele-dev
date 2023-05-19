@@ -6,7 +6,7 @@
 
         <div class="navbar-item">
             <div class="buttons">
-                <a routerLink="contact-us" class="button">
+                <a (click)="openModal($event)" class="button">
                     <strong>Contact us</strong>
                 </a>
             </div>
@@ -51,8 +51,7 @@
             </li>
             <div (click)="burgerDropDown()">
                 <a class="navbar-item light-blue" routerLink="about-us"><strong class="orange">About Us</strong></a>
-                <a routerLink="contact-us" class="navbar-item light-blue"><strong class="light-blue">contact
-                        us</strong></a>
+
                 <a class="navbar-item light-blue" routerLink="news"><strong class="light-blue">News</strong></a>
             </div>
         </ul>
@@ -98,7 +97,7 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a routerLink="contact-us" class="button">
+                    <a (click)="openModal($event)" class="button">
                         <strong>Contact us</strong>
                     </a>
                 </div>

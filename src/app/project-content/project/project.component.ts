@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProjectsService } from '../../Services/projects.service';
-
+import { ProjectsService } from 'src/app/Services/projects.service';
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',

@@ -1,16 +1,18 @@
 <section aria-label="Newest Photos">
     <div class="carousel">
         <ul>
-            <ng-container *ngFor="let img of imgUrl; let i = index">
+            <ng-container *ngFor="let item of news; let i = index">
                 <li class="slide" [ngClass]="{'slide-active': i === currentIndex }">
-                    <img [src]="img" alt="">
+                    <img [src]="item.imgUrl" alt="">
+                    <h1 class="title"> {{item.title}} </h1>
+                    <button class="button is-danger is-medium" (click)="toNewsPage(currentIndex)">See more</button>
                 </li>
 
             </ng-container>
         </ul>
         <ul class="dot-list">
             <ng-container *ngFor="let img of imgUrl; let i = index">
-                <li class="dot" [ngClass]="{'dot-active': i=== currentIndex}" (click)="currentIndex = i">&#x2022;</li>
+                <li class="dot" [ngClass]="{'dot-active': i=== currentIndex}" (click)="dotClicked(i)">&#x2022;</li>
             </ng-container>
         </ul>
     </div>

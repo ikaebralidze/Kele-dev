@@ -7,8 +7,9 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { ProjectsService } from '../Services/projects.service';
 import { Projects } from '../model/projects.modal';
+import { ProjectsService } from '../Services/projects.service';
+import { ModalService } from '../Services/modal.service';
 
 @Component({
   selector: 'app-nav',
@@ -22,7 +23,11 @@ export class NavComponent implements OnInit, OnDestroy {
   completeProjects: Projects[];
   currentProjects: Projects[];
 
-  constructor(private el: ElementRef, private proService: ProjectsService) {
+  constructor(
+    private el: ElementRef,
+    private proService: ProjectsService,
+    private modalService: ModalService
+  ) {
     this.proService.Obs$.subscribe((res) => {
       this.completeProjects = res.filter((e) => e.status == 'Complete');
       this.currentProjects = res.filter((e) => e.status == 'In Progress');
@@ -34,6 +39,11 @@ export class NavComponent implements OnInit, OnDestroy {
     if (!this.el.nativeElement.contains(event.target)) {
       this.burgerMenu = false;
     }
+  }
+
+  openModal(event) {
+    event.preventDefault();
+    this.modalService.toggleModal();
   }
 
   burgerDropDown() {
@@ -52,9 +62,7 @@ export class NavComponent implements OnInit, OnDestroy {
     this.currentdropDown = false;
   }
 
-  ngOnInit() {
-    document.body.appendChild(this.el.nativeElement);
-  }
+  ngOnInit() {}
 
   ngOnDestroy(): void {
     this.el.nativeElement.remove();

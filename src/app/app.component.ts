@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { ModalService } from './Services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,5 @@ import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 export class AppComponent {
   title = 'Kele-dev';
   burgerMenu = false;
+  constructor(public modalService: ModalService) {}
 }

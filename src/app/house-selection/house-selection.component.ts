@@ -7,6 +7,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IData, Projects } from '../model/projects.modal';
 import { ProjectsService } from '../Services/projects.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-house-selection',
@@ -38,7 +39,7 @@ export class HouseSelectionComponent implements OnInit {
 
   projectList: Projects[] = [];
   filteredProjects: Projects[];
-  sub$;
+  sub$: Observable<Projects[]>;
 
   constructor(private proService: ProjectsService) {
     this.proService.Obs$.subscribe((res) => {

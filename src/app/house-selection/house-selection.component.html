@@ -1,4 +1,6 @@
 <form class="container" [formGroup]="form" (submit)="onSubmit()" (change)="optionChanged()">
+    <h1 class="title">Choose your home</h1>
+
 
 
     <app-dropdown-button [form]="form.controls[data[0].type]" [data]="data[0]">
@@ -10,8 +12,10 @@
     <app-dropdown-button [form]="form.controls[data[2].type]" [data]="data[2]">
 
     </app-dropdown-button>
+    <div class="btn">
 
-    <button class="button find-button">Find</button>
+        <button class="button find-button">Find</button>
+    </div>
 
 </form>
 

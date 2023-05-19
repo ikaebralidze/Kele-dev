@@ -1,0 +1,7 @@
+<div class="field">
+    <label class="label">{{label}}</label>
+    <div class="control">
+        <input [formControl]="controlName" class="input" [type]="type" [placeholder]="placeholder">
+    </div>
+    <p class="help is-danger" *ngIf="controlName.dirty && controlName.invalid ">{{errorMessage}}</p>
+</div>

@@ -70,7 +70,7 @@
 }
 .dot-list {
   position: absolute;
-  bottom: 2rem;
+  bottom: 5rem;
   display: flex;
   left: 80%;
   transform: translateX(-50%);
@@ -79,16 +79,28 @@
 }
 
 .dot {
-  background-color: none;
-  border: none;
-  font-size: 3rem;
+  font-size: 6rem;
+  height: 3rem;
   z-index: 2;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgb(255, 255, 255);
   cursor: pointer;
 }
 
 .dot-active {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(137, 249, 106, 0.8);
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  right: 7rem;
+}
+
+.title {
+  position: absolute;
+  z-index: 100;
+  top: 40%;
+  right: 7rem;
 }
 
 @media screen and (max-width: 1023px) {
@@ -97,5 +109,11 @@
   }
   .dot-list {
     z-index: initial;
+  }
+  .is-medium {
+    width: 100px;
+    height: 39px;
+    font-size: 17px;
+    right: 2rem;
   }
 }

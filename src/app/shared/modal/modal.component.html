@@ -1,0 +1,28 @@
+<div class="modal">
+    <div class="modal-background" (click)="onClick()"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Contact Us</p>
+            <button class="delete" aria-label="close" (click)="onClick()"></button>
+        </header>
+        <section class="modal-card-body">
+            <p>Please provide your contact info and our team will contact you</p>
+            <hr>
+            <form [formGroup]="form">
+
+
+                <app-input [controlName]="form.controls.name" [placeholder]="'Name'" [label]="'Name'"
+                    [errorMessage]="'field is invalid'" [type]="'text'"></app-input>
+                <app-input [controlName]="form.controls.email" [placeholder]="'Email'" [label]="'Email'"
+                    [errorMessage]="'field is invalid'" [type]="'email'"></app-input>
+                <app-input [controlName]="form.controls.phone" [placeholder]="'Phone Number'" [label]="'Phone Number'"
+                    [errorMessage]="'field is invalid'" [type]="'tel'"></app-input>
+
+            </form>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-success" [disabled]="form.invalid" (click)="contactMe()">Contact me</button>
+            <!-- <button class="button">Cancel</button> -->
+        </footer>
+    </div>
+</div>
