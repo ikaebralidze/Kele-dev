@@ -4,7 +4,11 @@
             <ng-container *ngFor="let item of news; let i = index">
                 <li class="slide" [ngClass]="{'slide-active': i === currentIndex }">
                     <img [src]="item.imgUrl" alt="">
-                    <h1 class="title"> {{item.title}} </h1>
+                    <div class="news-container">
+
+                        <h1 class="title"> {{ item.title }} </h1>
+                        <p class="discription"> {{item.discription}} </p>
+                    </div>
                     <button class="button is-danger is-medium" (click)="toNewsPage(currentIndex)">See more</button>
                 </li>
 

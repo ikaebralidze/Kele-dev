@@ -132,12 +132,17 @@ export class HouseSelectionComponent implements OnInit {
 
     this.data[1].option = Array.from(new Set(proArr));
 
-    if (city === 'Tbilisi') {
+    // filtering next select item with previouse peak
+    if (city !== 'city') {
       this.data[2].option = this.projects.tbilisProjects;
-    } else if (city === 'Gudauri') {
-      this.data[2].option = this.projects.gudauriProjects;
-    } else {
-      this.data[2].option = this.projects.BakhmaroProjects;
+      if (type !== 'type') {
+        this.data[2].option = [];
+        this.projectList.forEach((e) => {
+          if (e.discribtion === type && e.adress === city) {
+            this.data[2].option.push(e.title);
+          }
+        });
+      }
     }
   }
 }

@@ -21,7 +21,6 @@ import { IData } from '../model/projects.modal';
 export class DropdownButtonComponent implements OnInit {
   @Input() data: IData;
   @Input() form = new FormControl('', [Validators.required]);
-  @Output() something = new EventEmitter();
 
   selectedValue: string;
   prevValue: string;
@@ -53,7 +52,5 @@ export class DropdownButtonComponent implements OnInit {
     }
   }
 
-  changed() {
-    this.something.emit(this.form.value);
-  }
+  changed() {}
 }

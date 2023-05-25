@@ -22,10 +22,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   news: INews[];
   carousel;
+  newsId: string[];
 
   constructor(private router: Router, private newsService: NewsService) {
-    this.newsService.Obs$.subscribe((news) => {
-      this.news = news;
+    this.newsService.Obs$.subscribe({
+      next: (news) => {
+        this.news = news;
+
+        this.newsId = news.map((e) => e.id);
+      },
     });
   }
 
@@ -53,13 +58,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   toNewsPage(index: number) {
-    if (index == 0) {
-      this.router.navigate(['/', 'news', 'first-news']);
-    } else if (index == 1) {
-      this.router.navigate(['/', 'news', 'second-news']);
-    } else {
-      this.router.navigate(['/', 'news', 'third-news']);
-    }
+    this.router.navigate([
+      '/',
+      'news',
+      this.newsId[index],
+      this.news[index].title,
+    ]);
   }
 
   ngOnDestroy(): void {

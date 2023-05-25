@@ -15,9 +15,10 @@ export class NewsPageComponent {
 
   constructor(private route: ActivatedRoute, private newsService: NewsService) {
     this.route.paramMap.subscribe((params) => {
-      this.newsId = params.get('id').replace('-', ' ');
+      this.newsId = params.get('id');
+
       this.newsService.Obs$.subscribe((news) => {
-        this.news = news.find((item) => item.title == this.newsId);
+        this.news = news.find((item) => item.id == this.newsId);
       });
       this.loaded = true;
     });
