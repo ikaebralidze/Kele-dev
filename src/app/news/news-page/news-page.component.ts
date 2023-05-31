@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NewsService } from 'src/app/Services/news.service';
+import { FireService } from 'src/app/Services/fire.service';
 import { INews } from 'src/app/model/news.model';
 
 @Component({
@@ -10,15 +10,15 @@ import { INews } from 'src/app/model/news.model';
 })
 export class NewsPageComponent {
   loaded = false;
-  newsId: string;
+  newsTitle: string;
   news: INews;
 
-  constructor(private route: ActivatedRoute, private newsService: NewsService) {
+  constructor(private route: ActivatedRoute, private fireService: FireService) {
     this.route.paramMap.subscribe((params) => {
-      this.newsId = params.get('id');
+      this.newsTitle = params.get('title');
 
-      this.newsService.Obs$.subscribe((news) => {
-        this.news = news.find((item) => item.id == this.newsId);
+      this.fireService.getProjects<INews>('news').subscribe((news) => {
+        this.news = news.find((item) => item.title == this.newsTitle);
       });
       this.loaded = true;
     });

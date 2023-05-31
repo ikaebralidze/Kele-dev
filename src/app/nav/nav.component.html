@@ -34,7 +34,7 @@
                 <ul *ngIf="currentdropDown" (click)="burgerDropDown()">
                     <ng-container *ngFor="let project of currentProjects">
 
-                        <li [routerLink]="['/', 'project', project.id]"><a>{{project.title}}</a></li>
+                        <li [routerLink]="['/', 'project', project.id, project.title]"><a>{{project.title}}</a></li>
                     </ng-container>
                 </ul>
             </li>
@@ -45,7 +45,7 @@
                 </h4>
                 <ul *ngIf="completdropDown" (click)="burgerDropDown()">
                     <ng-container *ngFor="let project of completeProjects">
-                        <li [routerLink]="['/', 'project', project.id]"><a>{{project.title}}</a></li>
+                        <li [routerLink]="['/', 'project', project.id, project.title]"><a>{{project.title}}</a></li>
                     </ng-container>
                 </ul>
             </li>
@@ -68,7 +68,8 @@
 
                 <div class="navbar-dropdown">
                     <ng-container *ngFor="let project of currentProjects">
-                        <a class="navbar-item" [routerLink]="['/', 'project', project.id]">{{project.title}}</a>
+                        <a class="navbar-item"
+                            [routerLink]="['/', 'project', project.id, project.title]">{{project.title}}</a>
                     </ng-container>
                 </div>
             </div>
@@ -79,7 +80,8 @@
 
                 <div class="navbar-dropdown">
                     <ng-container *ngFor="let project of completeProjects">
-                        <a class="navbar-item" [routerLink]="['/', 'project', project.id]">{{project.title}}</a>
+                        <a class="navbar-item"
+                            [routerLink]="['/', 'project', project.id, project.title]">{{project.title}}</a>
                     </ng-container>
 
                 </div>

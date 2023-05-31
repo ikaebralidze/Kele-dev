@@ -10,6 +10,7 @@ import {
 import { Projects } from '../model/projects.modal';
 import { ProjectsService } from '../Services/projects.service';
 import { ModalService } from '../Services/modal.service';
+import { FireService } from '../Services/fire.service';
 
 @Component({
   selector: 'app-nav',
@@ -25,10 +26,10 @@ export class NavComponent implements OnInit, OnDestroy {
 
   constructor(
     private el: ElementRef,
-    private proService: ProjectsService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private fireService: FireService
   ) {
-    this.proService.Obs$.subscribe((res) => {
+    this.fireService.getProjects<Projects>('projects').subscribe((res) => {
       this.completeProjects = res.filter((e) => e.status == 'Complete');
       this.currentProjects = res.filter((e) => e.status == 'In Progress');
     });

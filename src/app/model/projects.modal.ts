@@ -1,6 +1,6 @@
 export interface Projects {
   title: string;
-  imgUrl: string;
+  imgUrl: string[];
   adress: string;
   discribtion: string;
   id: string;

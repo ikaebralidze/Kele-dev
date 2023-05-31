@@ -16,6 +16,10 @@ import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { ModalComponent } from './shared/modal/modal.component';
 import { InputComponent } from './shared/input/input.component';
+import { SharedModule } from './shared/shared.module';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,7 @@ import { InputComponent } from './shared/input/input.component';
     ProjectsComponent,
     ModalComponent,
     InputComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,8 +41,12 @@ import { InputComponent } from './shared/input/input.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    SharedModule,
+    IonicModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
+  exports: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

@@ -1,1 +1,10 @@
-<p>about-us works!</p>
+<div class="container">
+
+    <ion-content>
+        <swiper-container (slidechange)="swiperSlideChanged($event)" [loop]="true" [pagination]="true">
+            <swiper-slide>1</swiper-slide>
+            <swiper-slide>2</swiper-slide>
+            <swiper-slide>3</swiper-slide>
+        </swiper-container>
+    </ion-content>
+</div>

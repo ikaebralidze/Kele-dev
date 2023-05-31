@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IData, Projects } from '../model/projects.modal';
 import { ProjectsService } from '../Services/projects.service';
 import { Observable } from 'rxjs';
+import { FireService } from '../Services/fire.service';
 
 @Component({
   selector: 'app-house-selection',
@@ -39,15 +40,12 @@ export class HouseSelectionComponent implements OnInit {
 
   projectList: Projects[] = [];
   filteredProjects: Projects[];
-  sub$: Observable<Projects[]>;
 
-  constructor(private proService: ProjectsService) {
-    this.proService.Obs$.subscribe((res) => {
+  constructor(private fireService: FireService) {
+    this.fireService.getProjects<Projects>('projects').subscribe((res) => {
       this.projectList = res;
       this.filteredProjects = this.projectList;
     });
-
-    this.sub$ = this.proService.Obs$;
   }
 
   ngOnInit(): void {

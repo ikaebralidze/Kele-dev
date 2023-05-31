@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { ModalService } from './Services/modal.service';
 
 @Component({

@@ -24,18 +24,17 @@
             </p>
         </section>
 
-        <section aria-label="Newest Photos">
+        <section aria-label="Newest Photos" class="galery">
             <header class="galery-header">
                 <h1>Galery</h1>
-                <button class="button is-rounded is-info prev" (click)="prev()" [disabled]="currentIndex == 0">
+                <button class="button is-rounded is-info prev" (click)="prev()">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                         <path
                             d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
                     </svg>
                 </button>
-                <button class="button is-rounded is-info next" style="color: white;" (click)="next()"
-                    [disabled]="currentIndex == imgUrl.length - 1">
+                <button class="button is-rounded is-info next" style="color: white;" (click)="next()">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
                         <path
@@ -43,8 +42,8 @@
                     </svg>
                 </button>
             </header>
-            <div class="carousel">
-                <div class="contain">
+            <div>
+                <!-- <div class="contain">
                     <ng-container *ngFor="let img of imgUrl; let i = index">
                         <div class="slide" [ngClass]="{
                                 'left1': currentIndex == 0, 'left2': currentIndex == 1, 'left3': currentIndex == 2,} ">
@@ -52,10 +51,22 @@
                         </div>
 
                     </ng-container>
-                </div>
+                </div> -->
+                <ion-content>
+                    <swiper-container #swiper class="contain" (slidechange)="swiperSlideChanged($event)" [loop]="true"
+                        [zoom]="true">
+                        <swiper-slide *ngFor="let img of project.imgUrl; let i = index">
+                            <img (click)="next()" class="images" [src]="img">
+                            <h1 class="title">{{buildingTitles[i]}}</h1>
+                        </swiper-slide>
+                    </swiper-container>
+                </ion-content>
 
             </div>
+
         </section>
+
+
 
     </main>
 </ng-container>

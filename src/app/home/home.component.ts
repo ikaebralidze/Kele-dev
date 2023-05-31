@@ -41,11 +41,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   next() {
-    if (this.currentIndex === this.imgUrl.length - 1) {
+    if (this.currentIndex === this.news.length - 1) {
       this.currentIndex = 0;
       return;
     }
     this.currentIndex += 1;
+  }
+
+  prev() {
+    if (this.currentIndex === 0) {
+      this.currentIndex = this.news.length - 1;
+      return;
+    }
+    this.currentIndex -= 1;
   }
 
   dotClicked(index: number) {
@@ -58,12 +66,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   toNewsPage(index: number) {
-    this.router.navigate([
-      '/',
-      'news',
-      this.newsId[index],
-      this.news[index].title,
-    ]);
+    this.router.navigate(['/', 'news', this.news[index].title]);
   }
 
   ngOnDestroy(): void {

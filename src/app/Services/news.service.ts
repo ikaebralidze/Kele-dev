@@ -9,11 +9,9 @@ import { map } from 'rxjs';
 export class NewsService {
   constructor(private afs: AngularFirestore) {}
 
-  getNews() {}
-
   addNews(news: INews) {
     news.id = this.afs.createId();
-
+    news.title = news.title.replaceAll(' ', '-');
     this.afs.collection('news').add(news);
   }
 
