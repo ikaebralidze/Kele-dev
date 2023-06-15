@@ -24,26 +24,29 @@
             </p>
         </section>
 
-        <section aria-label="Newest Photos" class="galery">
-            <header class="galery-header">
-                <h1>Galery</h1>
-                <button class="button is-rounded is-info prev" (click)="prev()">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 320 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                        <path
-                            d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                    </svg>
-                </button>
-                <button class="button is-rounded is-info next" style="color: white;" (click)="next()">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 320 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
-                        <path
-                            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
-                    </svg>
-                </button>
-            </header>
-            <div>
-                <!-- <div class="contain">
+        <div class="gridd">
+
+
+            <section aria-label="Newest Photos" class="galery">
+                <header class="galery-header">
+                    <h1>Galery</h1>
+                    <button class="button is-rounded is-info prev" (click)="prev()">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                        </svg>
+                    </button>
+                    <button class="button is-rounded is-info next" style="color: white;" (click)="next()">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                            <path
+                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
+                        </svg>
+                    </button>
+                </header>
+                <div>
+                    <!-- <div class="contain">
                     <ng-container *ngFor="let img of imgUrl; let i = index">
                         <div class="slide" [ngClass]="{
                                 'left1': currentIndex == 0, 'left2': currentIndex == 1, 'left3': currentIndex == 2,} ">
@@ -52,21 +55,23 @@
 
                     </ng-container>
                 </div> -->
-                <ion-content>
-                    <swiper-container #swiper class="contain" (slidechange)="swiperSlideChanged($event)" [loop]="true"
-                        [zoom]="true">
-                        <swiper-slide *ngFor="let img of project.imgUrl; let i = index">
-                            <img (click)="next()" class="images" [src]="img">
-                            <h1 class="title">{{buildingTitles[i]}}</h1>
-                        </swiper-slide>
-                    </swiper-container>
-                </ion-content>
+                    <ion-content>
+                        <swiper-container #swiper class="contain" (slidechange)="swiperSlideChanged($event)"
+                            [loop]="true" [zoom]="true">
+                            <swiper-slide *ngFor="let img of project.imgUrl; let i = index">
+                                <img (click)="next()" class="images" [src]="img">
+                                <h1 class="title">{{buildingTitles[i]}}</h1>
+                            </swiper-slide>
+                        </swiper-container>
 
-            </div>
-
-        </section>
+                        <!-- TODO: in desktop screen next to galey slide can be added some description of current building  -->
+                    </ion-content>
 
 
+                </div>
 
+            </section>
+            <app-map></app-map>
+        </div>
     </main>
 </ng-container>

@@ -1,0 +1,59 @@
+.map-container {
+  position: relative;
+  height: 20rem;
+  width: 100%;
+  top: 47%;
+  left: 50%;
+  z-index: 2;
+  padding-right: 1rem;
+  transform: translate(-50%, -50%);
+}
+:host {
+  position: relative;
+}
+
+.frame {
+  position: absolute;
+  top: 46%;
+  right: 0;
+  width: 110%;
+  height: 25rem;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: -8px 0px 8px 2px rgb(228, 228, 228);
+
+  transform: translate(0%, -50%);
+  background-color: rgb(238, 238, 238);
+}
+
+.map-frame {
+  border: 2px solid rgb(238, 238, 238);
+  height: 100%;
+  width: 95%;
+
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+#map {
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  :host {
+    top: 3rem;
+    margin: 1rem;
+  }
+  .map-frame {
+    width: 80%;
+  }
+  .frame {
+    display: none;
+  }
+  .map-container {
+    display: flex;
+    justify-content: center;
+    padding-right: 0;
+    left: 50%;
+  }
+}

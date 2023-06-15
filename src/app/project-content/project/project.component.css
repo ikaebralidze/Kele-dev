@@ -20,7 +20,8 @@
   position: absolute;
 }
 .galery {
-  width: 60%;
+  width: 100%;
+  overflow: hidden;
 }
 
 .title {
@@ -123,6 +124,12 @@ swiper-slide {
   align-items: center;
   justify-content: center;
 }
+.gridd {
+  display: grid;
+  grid-template-columns: 64% 35%;
+
+  gap: 1%;
+}
 
 @media screen and (max-width: 1024px) {
   swiper-slide img {
@@ -154,5 +161,8 @@ swiper-slide {
   swiper-slide img {
     width: 20rem;
     height: 13rem;
+  }
+  .gridd {
+    display: block;
   }
 }

@@ -7,18 +7,17 @@ import { map } from 'rxjs';
   providedIn: 'root',
 })
 export class ProjectsService {
-  // public projectsCollection: AngularFirestoreCollection;
   projects: Projects[] = [];
   reqPending = false;
 
   constructor(private afs: AngularFirestore) {
-    // this.projectsCollection = afs.collection('projects');
   }
 
   addProject(project: Projects) {
     project.id = this.afs.createId();
     return this.afs.collection('projects').add(project);
   }
+
 
   // this.reqPending = true;
 

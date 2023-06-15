@@ -7,6 +7,7 @@ import {
 import { Router } from '@angular/router';
 import { NewsService } from '../Services/news.service';
 import { INews } from '../model/news.model';
+import { FireService } from '../Services/fire.service';
 
 @Component({
   selector: 'app-home',
@@ -23,13 +24,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   news: INews[];
   carousel;
   newsId: string[];
+  isLoaded = false;
 
-  constructor(private router: Router, private newsService: NewsService) {
-    this.newsService.Obs$.subscribe({
+  constructor(
+    private router: Router,
+    private newsService: NewsService,
+    private fireService: FireService
+  ) {
+    this.fireService.getProjects<INews>('news').subscribe({
       next: (news) => {
         this.news = news;
-
         this.newsId = news.map((e) => e.id);
+        this.isLoaded = true;
       },
     });
   }

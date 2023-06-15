@@ -1,10 +1,10 @@
-<section aria-label="Newest Photos">
+<section *ngIf="isLoaded" saria-label="Newest Photos">
     <div class="carousel">
         <ul>
             <ng-container *ngFor="let item of news; let i = index">
                 <li class="slide" [ngClass]="{'slide-active': i === currentIndex }">
-                    <div class="next" (click)="next()"></div>
-                    <div class="prev" (click)="prev()"></div>
+                    <!-- <div class="next" (click)="next()"></div>
+                    <div class="prev" (click)="prev()"></div> -->
                     <img [src]="item.imgUrl" alt="">
                     <div class="news-container">
 
@@ -22,5 +22,11 @@
             </ng-container>
         </ul>
     </div>
+    <app-house-selection></app-house-selection>
 </section>
-<app-house-selection></app-house-selection>
+
+
+
+<ng-container *ngIf="!isLoaded">
+    <app-placeholder></app-placeholder>
+</ng-container>

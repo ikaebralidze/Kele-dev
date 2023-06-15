@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import * as L from 'leaflet';
-
 @Component({
-  selector: 'app-about-us',
-  templateUrl: './about-us.component.html',
-  styleUrls: ['./about-us.component.css'],
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css'],
 })
-export class AboutUsComponent implements OnInit {
+export class MapComponent {
   private map: L.Map;
   private centroid: L.LatLngExpression; //
 
@@ -25,16 +24,6 @@ export class AboutUsComponent implements OnInit {
           '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }
     );
-
-    // create 5 random jitteries and add them to map
-    // const jittery = Array(5)
-    //   .fill(this.centroid)
-    //   .map((x) => [
-    //     x[0] + (Math.random() - 0.5) / 10,
-    //     x[1] + (Math.random() - 0.5) / 10,
-    //   ])
-    //   .map((x) => L.marker(x as L.LatLngExpression))
-    //   .forEach((x) => x.addTo(this.map));
 
     tiles.addTo(this.map);
   }

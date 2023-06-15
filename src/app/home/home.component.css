@@ -127,7 +127,7 @@
   right: 0;
   height: 100%;
   background-color: rgba(0, 0, 0, 0);
-  z-index: 50;
+  z-index: 40;
 }
 .prev {
   position: absolute;
@@ -135,7 +135,7 @@
   left: 0;
   height: 100%;
   background-color: rgba(0, 0, 0, 0);
-  z-index: 50;
+  z-index: 40;
 }
 
 @media screen and (max-width: 1023px) {

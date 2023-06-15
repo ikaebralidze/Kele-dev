@@ -37,7 +37,7 @@ export class ProjectComponent implements OnInit, AfterContentChecked {
   currentIndex = 0;
 
   constructor(private route: ActivatedRoute, private firService: FireService) {
-    // checking params Id and geting data according it
+    // * checking params Id and geting data according it
 
     this.route.paramMap.subscribe((params) => {
       this.projectId = params.get('id');
@@ -47,6 +47,7 @@ export class ProjectComponent implements OnInit, AfterContentChecked {
 
         this.loaded = true;
 
+        // ! projects buildings images should be names with building title - "title-1.jgp"
         this.project.imgUrl.map((e) => {
           this.buildingTitles.push(
             e.slice(e.indexOf('b'), -4).replaceAll('-', ' ')
@@ -64,6 +65,7 @@ export class ProjectComponent implements OnInit, AfterContentChecked {
     this.swiper?.slidePrev();
   }
 
+  // TODO: here can be added logic lets see...
   swiperSlideChanged(e: any) {
     // console.log(e);
   }
