@@ -1,3 +1,4 @@
+@import "leaflet/dist/leaflet.css";
 .map-container {
   position: relative;
   height: 20rem;
@@ -7,6 +8,7 @@
   z-index: 2;
   padding-right: 1rem;
   transform: translate(-50%, -50%);
+  z-index: 25;
 }
 :host {
   position: relative;
@@ -21,6 +23,7 @@
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   box-shadow: -8px 0px 8px 2px rgb(228, 228, 228);
+  z-index: 20;
 
   transform: translate(0%, -50%);
   background-color: rgb(238, 238, 238);
@@ -30,7 +33,7 @@
   border: 2px solid rgb(238, 238, 238);
   height: 100%;
   width: 95%;
-
+  max-width: 500px;
   border-radius: 20px;
   overflow: hidden;
 }

@@ -1,7 +1,7 @@
 <ng-container *ngIf="loaded">
     <main>
 
-        <header class="cont">
+        <header class="header-container">
             <div class="header"></div>
             <div class="blur"></div>
             <h1 class="title">{{project.title}}</h1>
@@ -46,18 +46,10 @@
                     </button>
                 </header>
                 <div>
-                    <!-- <div class="contain">
-                    <ng-container *ngFor="let img of imgUrl; let i = index">
-                        <div class="slide" [ngClass]="{
-                                'left1': currentIndex == 0, 'left2': currentIndex == 1, 'left3': currentIndex == 2,} ">
-                            <img [ngClass]="{'opacity': i == currentIndex}" [src]="img" alt="">
-                        </div>
 
-                    </ng-container>
-                </div> -->
                     <ion-content>
-                        <swiper-container #swiper class="contain" (slidechange)="swiperSlideChanged($event)"
-                            [loop]="true" [zoom]="true">
+                        <swiper-container #swiper (slidechange)="swiperSlideChanged($event)" [loop]="true"
+                            [zoom]="true">
                             <swiper-slide *ngFor="let img of project.imgUrl; let i = index">
                                 <img (click)="next()" class="images" [src]="img">
                                 <h1 class="title">{{buildingTitles[i]}}</h1>
@@ -71,7 +63,7 @@
                 </div>
 
             </section>
-            <app-map></app-map>
+            <app-map [coords]="coords" [coord]="project.coords"></app-map>
         </div>
     </main>
 </ng-container>

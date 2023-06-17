@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import * as L from 'leaflet';
 @Component({
   selector: 'app-map',
@@ -7,12 +7,13 @@ import * as L from 'leaflet';
 })
 export class MapComponent {
   private map: L.Map;
-  private centroid: L.LatLngExpression; //
+  @Input() coords: L.LatLngExpression[];
+  @Input() coord: L.LatLngExpression;
 
   private initMap(): void {
     this.map = L.map('map', {
-      center: this.centroid,
-      zoom: 12,
+      center: this.coord,
+      zoom: 16,
     });
 
     const tiles = L.tileLayer(
@@ -25,14 +26,20 @@ export class MapComponent {
       }
     );
 
+    const defaultIcon = L.icon({
+      iconUrl: 'marker-icon.png',
+      iconSize: [20, 20],
+      iconAnchor: [2, 2],
+      popupAnchor: [0, -2],
+    });
+
+    this.coords.forEach((e) => {
+      L.marker(e, { icon: defaultIcon }).addTo(this.map);
+    });
+
     tiles.addTo(this.map);
   }
   ngOnInit(): void {
-    navigator.geolocation.getCurrentPosition((e) => {
-      const loc = e.coords;
-      this.centroid = [loc.latitude, loc.longitude];
-
-      this.initMap();
-    });
+    this.initMap();
   }
 }

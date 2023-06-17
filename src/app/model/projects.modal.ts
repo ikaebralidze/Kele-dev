@@ -5,6 +5,7 @@ export interface Projects {
   discribtion: string;
   id: string;
   status: string;
+  coords: L.LatLngExpression;
 }
 export interface IData {
   type: string;

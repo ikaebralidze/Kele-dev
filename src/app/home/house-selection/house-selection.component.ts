@@ -1,14 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IData, Projects } from '../model/projects.modal';
-import { ProjectsService } from '../Services/projects.service';
-import { Observable } from 'rxjs';
-import { FireService } from '../Services/fire.service';
+import { IData, Projects } from '../../model/projects.modal';
+import { FireService } from '../../Services/fire.service';
 
 @Component({
   selector: 'app-house-selection',
@@ -38,13 +31,13 @@ export class HouseSelectionComponent implements OnInit {
     BakhmaroProjects: ['Bakhmaro N1'],
   };
 
-  projectList: Projects[] = [];
-  filteredProjects: Projects[];
+  private _projectList: Projects[] = [];
+  public filteredProjects: Projects[];
 
   constructor(private fireService: FireService) {
     this.fireService.getProjects<Projects>('projects').subscribe((res) => {
-      this.projectList = res;
-      this.filteredProjects = this.projectList;
+      this._projectList = res;
+      this.filteredProjects = this._projectList;
     });
   }
 
@@ -76,11 +69,11 @@ export class HouseSelectionComponent implements OnInit {
     ) {
       this.data[1].option = ['type'];
 
-      this.filteredProjects = this.projectList;
+      this.filteredProjects = this._projectList;
       reset();
       return;
     } else if (city.value !== 'city') {
-      this.filteredProjects = this.projectList.filter((e: Projects) => {
+      this.filteredProjects = this._projectList.filter((e: Projects) => {
         if (e.adress === city.value) {
           return e;
         }
@@ -88,7 +81,7 @@ export class HouseSelectionComponent implements OnInit {
       });
 
       if (type.value != 'type') {
-        this.filteredProjects = this.projectList.filter((e) => {
+        this.filteredProjects = this._projectList.filter((e) => {
           if (e.discribtion === type.value && e.adress === city.value) {
             return e;
           }
@@ -96,7 +89,7 @@ export class HouseSelectionComponent implements OnInit {
         });
 
         if (project.value != 'projects') {
-          this.filteredProjects = this.projectList.filter((e) => {
+          this.filteredProjects = this._projectList.filter((e) => {
             if (
               e.discribtion === type.value &&
               e.adress === city.value &&
@@ -118,7 +111,7 @@ export class HouseSelectionComponent implements OnInit {
     const project = this.form.controls.projects.value;
 
     let proArr = [];
-    this.projectList.forEach((e) => {
+    this._projectList.forEach((e) => {
       if (city === e.adress) {
         proArr.push(e.discribtion);
       } else return null;
@@ -135,7 +128,7 @@ export class HouseSelectionComponent implements OnInit {
       this.data[2].option = this.projects.tbilisProjects;
       if (type !== 'type') {
         this.data[2].option = [];
-        this.projectList.forEach((e) => {
+        this._projectList.forEach((e) => {
           if (e.discribtion === type && e.adress === city) {
             this.data[2].option.push(e.title);
           }

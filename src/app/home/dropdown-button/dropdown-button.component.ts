@@ -9,7 +9,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { IData } from '../model/projects.modal';
+import { IData } from '../../model/projects.modal';
 
 @Component({
   selector: 'app-dropdown-button',

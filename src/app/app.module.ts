@@ -7,10 +7,10 @@ import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { HouseSelectionComponent } from './house-selection/house-selection.component';
-import { DropdownButtonComponent } from './dropdown-button/dropdown-button.component';
+import { HouseSelectionComponent } from './home/house-selection/house-selection.component';
+import { DropdownButtonComponent } from './home/dropdown-button/dropdown-button.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ProjectsComponent } from './project-card/projects.component';
+import { ProjectsComponent } from './projects/projects.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -20,29 +20,20 @@ import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { InputModule } from './shared/input/input.module';
+import { ModalModule } from './shared/modal/modal.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent,
-    HomeComponent,
-    ContactUsComponent,
-    HouseSelectionComponent,
-    DropdownButtonComponent,
-    ProjectsComponent,
-    ModalComponent,
-    InputComponent,
-    NotFoundComponent,
-    AboutUsComponent,
-  ],
+  declarations: [AppComponent, NavComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     SharedModule,
     IonicModule,
+    InputModule,
+    ModalModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

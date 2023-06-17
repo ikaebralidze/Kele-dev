@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { TitleMakerPipe } from '../pipes/title-maker.pipe';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
-import { MapComponent } from './map/map.component';
 
 @NgModule({
-  declarations: [TitleMakerPipe, PlaceholderComponent, MapComponent],
+  declarations: [],
   imports: [],
-  exports: [TitleMakerPipe, PlaceholderComponent, MapComponent],
+  exports: [],
 })
 export class SharedModule {}

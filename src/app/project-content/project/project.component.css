@@ -1,3 +1,5 @@
+/* * Header  */
+
 .header {
   /* background-image: "../../assets/images/building1.jpg"; */
   background-image: url("../../../assets/images/building1.jpg");
@@ -12,18 +14,6 @@
   height: 500px;
   z-index: -1;
 }
-
-.blur {
-  background-color: rgba(0, 0, 0, 0.4);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-.galery {
-  width: 100%;
-  overflow: hidden;
-}
-
 .title {
   z-index: 10;
   font-size: 4.5rem;
@@ -35,12 +25,22 @@
   margin-bottom: 1rem;
 }
 
-.cont {
+.header-container {
   width: 100%;
   display: flex;
   align-items: flex-end;
   margin: 0;
 }
+
+.blur {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+/* * progress bar and discription */
+
 
 .content {
   display: flex;
@@ -50,9 +50,7 @@
   z-index: 100;
   background-color: white;
   border-radius: 20px;
-}
-
-.content {
+  
   padding-left: 2rem;
   padding-right: 2rem;
 }
@@ -61,6 +59,7 @@
   align-self: center;
   margin-top: 1rem;
   width: 80%;
+  max-width: 600px;
   box-shadow: 1px black;
 }
 .progres-label {
@@ -81,10 +80,15 @@
 .galery-header > h1 {
   font-size: 2rem;
 }
+.galery {
+  width: 100%;
+  overflow: hidden;
+}
 
 svg {
   height: 3rem;
 }
+
 .galery-header > button {
   width: 3rem;
   height: 3rem;

@@ -1,16 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { AboutUsComponent } from './about-us/about-us.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeModule } from './home/home.module';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'contact-us', component: ContactUsComponent },
+  {
+    path: '',
+
+    component: HomeComponent,
+  },
+  {
+    path: 'contact-us',
+    loadChildren: () =>
+      import('../app/contact-us/contact-us.module').then(
+        (m) => m.ContactUsModule
+      ),
+  },
   {
     path: 'about-us',
-    component: AboutUsComponent,
+    loadChildren: () =>
+      import('../app/about-us/about-us.module').then((m) => m.AboutUsModule),
   },
   {
     path: '',

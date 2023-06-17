@@ -24,6 +24,7 @@ export class ProjectComponent implements OnInit, AfterContentChecked {
   project: Projects;
   loaded = false;
   buildingTitles = [];
+  coords;
 
   @ViewChild('swiper')
   swiperRef: ElementRef | undefined;
@@ -44,7 +45,7 @@ export class ProjectComponent implements OnInit, AfterContentChecked {
 
       this.firService.getProjects<Projects>('projects').subscribe((res) => {
         this.project = res.find((e) => this.projectId === e.id);
-
+        this.coords = res.map(e => e.coords)
         this.loaded = true;
 
         // ! projects buildings images should be names with building title - "title-1.jgp"
