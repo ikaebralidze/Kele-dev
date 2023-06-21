@@ -4,11 +4,11 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MapModule } from '../shared/map/map.module';
+import { MapComponent } from '../shared/map/map.component';
 
 @NgModule({
   declarations: [ProjectComponent],
-  imports: [CommonModule, ProjectRoutingModule, IonicModule, MapModule],
+  imports: [CommonModule, ProjectRoutingModule, IonicModule, MapComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProjectContentModule {}

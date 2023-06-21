@@ -1,6 +1,7 @@
 import {
   AfterContentChecked,
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   OnInit,
@@ -13,6 +14,7 @@ import { IonicSlides } from '@ionic/angular';
 import { Swiper } from 'swiper';
 
 import { register } from 'swiper/element/bundle';
+import { switchMap } from 'rxjs';
 register();
 @Component({
   selector: 'app-project',
@@ -39,13 +41,18 @@ export class ProjectComponent implements OnInit, AfterContentChecked {
 
   constructor(private route: ActivatedRoute, private firService: FireService) {
     // * checking params Id and geting data according it
+    // this.route.paramMap.pipe(
+    //   switchMap(param => {
+    //     this.firService.getProjects<Projects>('projects')
+    //   })
+    // )
 
     this.route.paramMap.subscribe((params) => {
       this.projectId = params.get('id');
 
       this.firService.getProjects<Projects>('projects').subscribe((res) => {
         this.project = res.find((e) => this.projectId === e.id);
-        this.coords = res.map(e => e.coords)
+        this.coords = res.map((e) => e.coords);
         this.loaded = true;
 
         // ! projects buildings images should be names with building title - "title-1.jgp"

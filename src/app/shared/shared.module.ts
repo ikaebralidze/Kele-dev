@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { TitleMakerPipe } from '../pipes/title-maker.pipe';
-import { PlaceholderComponent } from './placeholder/placeholder.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [TitleMakerPipe],
   imports: [],
-  exports: [],
+  exports: [TitleMakerPipe],
 })
 export class SharedModule {}

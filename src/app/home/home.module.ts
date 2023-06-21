@@ -14,10 +14,10 @@ import { TitleMakerPipe } from '../pipes/title-maker.pipe';
     HomeComponent,
     HouseSelectionComponent,
     DropdownButtonComponent,
-    TitleMakerPipe,
   ],
   imports: [
     CommonModule,
+    SharedModule,
     // SharedModule,
     // FormsModule,
     ReactiveFormsModule,

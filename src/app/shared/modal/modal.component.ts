@@ -1,11 +1,20 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ModalService } from 'src/app/Services/modal.service';
+
+import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css'],
+  standalone: true,
+  imports: [InputComponent, ReactiveFormsModule],
 })
 export class ModalComponent implements OnInit {
   isModalHiden: boolean;

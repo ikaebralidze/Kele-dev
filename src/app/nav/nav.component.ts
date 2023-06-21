@@ -1,4 +1,3 @@
-import { ChangeDetectionStrategy } from '@angular/core';
 import {
   Component,
   ElementRef,
@@ -8,7 +7,6 @@ import {
   OnInit,
 } from '@angular/core';
 import { Projects } from '../model/projects.modal';
-import { ProjectsService } from '../Services/projects.service';
 import { ModalService } from '../Services/modal.service';
 import { FireService } from '../Services/fire.service';
 

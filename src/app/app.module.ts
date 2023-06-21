@@ -20,8 +20,6 @@ import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { InputModule } from './shared/input/input.module';
-import { ModalModule } from './shared/modal/modal.module';
 
 @NgModule({
   declarations: [AppComponent, NavComponent, NotFoundComponent],
@@ -32,8 +30,8 @@ import { ModalModule } from './shared/modal/modal.module';
     AngularFirestoreModule,
     SharedModule,
     IonicModule,
-    InputModule,
-    ModalModule,
+    InputComponent,
+    ModalComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

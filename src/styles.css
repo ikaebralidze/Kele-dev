@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import "bulma/css/bulma.css";
+/* @import "bulma/css/bulma.css"; */
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-/* @import "~leaflet/dist/leaflet.css"; */
+@import "~leaflet/dist/leaflet.css";
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
