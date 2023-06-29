@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FireService } from 'src/app/Services/fire.service';
+import { switchMap } from 'rxjs';
+import { NewsService } from 'src/app/Services/news.service';
 import { INews } from 'src/app/model/news.model';
 
 @Component({
@@ -12,15 +13,22 @@ export class NewsPageComponent {
   loaded = false;
   newsTitle: string;
   news: INews;
-
-  constructor(private route: ActivatedRoute, private fireService: FireService) {
-    this.route.paramMap.subscribe((params) => {
-      this.newsTitle = params.get('title');
-
-      this.fireService.getProjects<INews>('news').subscribe((news) => {
-        this.news = news.find((item) => item.title == this.newsTitle);
+  sub$;
+  constructor(private route: ActivatedRoute, private newService: NewsService) {
+    this.sub$ = this.route.paramMap
+      .pipe(
+        switchMap((param) => {
+          this.newsTitle = param.get('title');
+          return this.newService.getNews();
+        })
+      )
+      .subscribe((news: INews[]) => {
+        this.news = news.find((item: INews) => item.title == this.newsTitle);
+        this.loaded = true;
       });
-      this.loaded = true;
-    });
+  }
+
+  ngOnDestroy() {
+    this.sub$.unsubscribe();
   }
 }

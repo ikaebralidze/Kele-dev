@@ -1,13 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NewsService } from '../Services/news.service';
 import { INews } from '../model/news.model';
-import { FireService } from '../Services/fire.service';
 
 @Component({
   selector: 'app-home',
@@ -26,17 +20,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   newsId: string[];
   isLoaded = false;
 
-  constructor(
-    private router: Router,
-    private newsService: NewsService,
-    private fireService: FireService
-  ) {
-    this.fireService.getProjects<INews>('news').subscribe({
-      next: (news) => {
-        this.news = news;
-        this.newsId = news.map((e) => e.id);
-        this.isLoaded = true;
-      },
+  constructor(private router: Router, private newsService: NewsService) {
+    this.newsService.getNews().subscribe((news) => {
+      this.news = news;
+      this.newsId = news.map((e) => e.id);
+      this.isLoaded = true;
     });
   }
 

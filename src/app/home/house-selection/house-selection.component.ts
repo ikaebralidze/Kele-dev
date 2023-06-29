@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IData, Projects } from '../../model/projects.modal';
-import { FireService } from '../../Services/fire.service';
+import { ProjectsService } from 'src/app/Services/projects.service';
+import { FilterHousesService } from 'src/app/Services/filter-houses.service';
+import { FilterProjectsPipe } from 'src/app/pipes/filter-projects.pipe';
 
 @Component({
   selector: 'app-house-selection',
@@ -19,32 +21,23 @@ export class HouseSelectionComponent implements OnInit {
     projects: new FormControl('projects', [Validators.required]),
   });
 
-  data: IData[] = [
-    { type: 'city', option: ['Tbilisi', 'Gudauri', 'Bakhmaro'] },
-    { type: 'type', option: ['apartment', 'parking slot', 'office space'] },
-    { type: 'projects', option: ['projects'] },
-  ];
-
-  projects = {
-    tbilisProjects: ['Mukhiani', 'Vazisubani', 'Lisi'],
-    gudauriProjects: ['Gudauri N1', 'Gudauri N2'],
-    BakhmaroProjects: ['Bakhmaro N1'],
-  };
+  data: IData[] = [];
 
   private _projectList: Projects[] = [];
   public filteredProjects: Projects[];
 
-  constructor(private fireService: FireService) {
-    this.fireService.getProjects<Projects>('projects').subscribe((res) => {
+  constructor(
+    private projetService: ProjectsService,
+    private filter: FilterHousesService
+  ) {
+    this.projetService.getProjects().subscribe((res) => {
       this._projectList = res;
       this.filteredProjects = this._projectList;
     });
   }
 
   ngOnInit(): void {
-    if (this.form.controls.city.value === 'city') {
-      this.data[1].option = ['type'];
-    }
+    this.data = this.filter.data;
     this.showProjects = true;
   }
 
@@ -52,88 +45,15 @@ export class HouseSelectionComponent implements OnInit {
     const type = this.form.controls.type;
     const city = this.form.controls.city;
     const project = this.form.controls.projects;
-
-    this.data[1].option = ['type'];
-    const reset = () => {
-      this.showProjects = true;
-
-      city.setValue('city');
-      type.setValue('type');
-      project.setValue('projects');
-    };
-
-    if (
-      city.value === 'city' &&
-      type.value === 'type' &&
-      project.value === 'projects'
-    ) {
-      this.data[1].option = ['type'];
-
-      this.filteredProjects = this._projectList;
-      reset();
-      return;
-    } else if (city.value !== 'city') {
-      this.filteredProjects = this._projectList.filter((e: Projects) => {
-        if (e.adress === city.value) {
-          return e;
-        }
-        return null;
-      });
-
-      if (type.value != 'type') {
-        this.filteredProjects = this._projectList.filter((e) => {
-          if (e.discribtion === type.value && e.adress === city.value) {
-            return e;
-          }
-          return null;
-        });
-
-        if (project.value != 'projects') {
-          this.filteredProjects = this._projectList.filter((e) => {
-            if (
-              e.discribtion === type.value &&
-              e.adress === city.value &&
-              project.value === e.title
-            ) {
-              return e;
-            }
-            return null;
-          });
-        }
-      }
-      reset();
-    }
+    this.filteredProjects = new FilterProjectsPipe(
+      this.projetService
+    ).transform({ city, type, project });
   }
 
   optionChanged() {
-    const city = this.form.controls.city.value;
-    const type = this.form.controls.type.value;
-    const project = this.form.controls.projects.value;
-
-    let proArr = [];
-    this._projectList.forEach((e) => {
-      if (city === e.adress) {
-        proArr.push(e.discribtion);
-      } else return null;
+    this.data = this.filter.filter({
+      city: this.form.controls.city.value,
+      type: this.form.controls.type.value,
     });
-
-    if (this.form.controls.city.value === 'city') {
-      this.data[1].option = ['type'];
-    }
-
-    this.data[1].option = Array.from(new Set(proArr));
-
-    // filtering next select item with previouse peak
-    if (city !== 'city') {
-      this.data[2].option = this.projects.tbilisProjects;
-      if (type !== 'type') {
-        this.data[2].option = [];
-        this._projectList.forEach((e) => {
-          if (e.discribtion === type && e.adress === city) {
-            this.data[2].option.push(e.title);
-          }
-        });
-      }
-    }
   }
 }

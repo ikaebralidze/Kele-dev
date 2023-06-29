@@ -1,36 +1,36 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Projects } from '../model/projects.modal';
-import { map } from 'rxjs';
+import { Projects, collectionName } from '../model/projects.modal';
+import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectsService {
-  projects: Projects[] = [];
-  reqPending = false;
+  private project = new BehaviorSubject<Projects[]>([]);
 
   constructor(private afs: AngularFirestore) {
+    this.fetchData();
   }
 
-  addProject(project: Projects) {
-    project.id = this.afs.createId();
-    return this.afs.collection('projects').add(project);
+  fetchData() {
+    this.afs
+      .collection(collectionName.projects)
+      .snapshotChanges()
+      .pipe(
+        map((res) => {
+          console.log('called', 'projects');
+          return res.map((e) => {
+            const data: any = e.payload.doc.data() as Projects;
+            data.id = e.payload.doc.id;
+            return data as Projects;
+          });
+        })
+      )
+      .subscribe((result) => this.project.next(result));
   }
 
-
-  // this.reqPending = true;
-
-  // Obs$ = this.afs
-  //   .collection('projects')
-  //   .snapshotChanges()
-  //   .pipe(
-  //     map((res) => {
-  //       return res.map((e) => {
-  //         const data = e.payload.doc.data() as Projects;
-  //         data.id = e.payload.doc.id;
-  //         return data as Projects;
-  //       });
-  //     })
-  //   );
+  getProjects() {
+    return this.project.asObservable();
+  }
 }

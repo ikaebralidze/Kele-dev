@@ -89,7 +89,7 @@
 }
 
 .dot-active {
-  color: rgba(137, 249, 106, 0.8);
+  color: #84a7a1;
 }
 
 .button {
@@ -136,6 +136,12 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0);
   z-index: 40;
+}
+
+.btn-news {
+  background-color: #ff8551;
+  border: none;
+  color: white;
 }
 
 @media screen and (max-width: 1023px) {

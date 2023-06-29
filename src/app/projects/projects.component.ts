@@ -7,7 +7,7 @@ import { Projects } from '../model/projects.modal';
   styleUrls: ['./projects.component.css'],
 })
 export class ProjectsComponent {
-  @Input() data: Projects;
+  @Input() project: Projects;
 
   projectId: string;
 

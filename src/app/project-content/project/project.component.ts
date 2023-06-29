@@ -1,30 +1,29 @@
 import {
   AfterContentChecked,
-  AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   ElementRef,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FireService } from 'src/app/Services/fire.service';
 import { Projects } from 'src/app/model/projects.modal';
-import { IonicSlides } from '@ionic/angular';
 import { Swiper } from 'swiper';
 
 import { register } from 'swiper/element/bundle';
 import { switchMap } from 'rxjs';
+import { ProjectsService } from 'src/app/Services/projects.service';
 register();
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css'],
 })
-export class ProjectComponent implements OnInit, AfterContentChecked {
+export class ProjectComponent
+  implements OnInit, AfterContentChecked, OnDestroy
+{
   projectId = '';
   project: Projects;
-  loaded = false;
   buildingTitles = [];
   coords;
 
@@ -38,31 +37,18 @@ export class ProjectComponent implements OnInit, AfterContentChecked {
     '../../assets/images/building.webp',
   ];
   currentIndex = 0;
-
-  constructor(private route: ActivatedRoute, private firService: FireService) {
+  sub$;
+  constructor(
+    private route: ActivatedRoute,
+    private projectService: ProjectsService
+  ) {
     // * checking params Id and geting data according it
-    // this.route.paramMap.pipe(
-    //   switchMap(param => {
-    //     this.firService.getProjects<Projects>('projects')
-    //   })
-    // )
-
-    this.route.paramMap.subscribe((params) => {
-      this.projectId = params.get('id');
-
-      this.firService.getProjects<Projects>('projects').subscribe((res) => {
-        this.project = res.find((e) => this.projectId === e.id);
-        this.coords = res.map((e) => e.coords);
-        this.loaded = true;
-
-        // ! projects buildings images should be names with building title - "title-1.jgp"
-        this.project.imgUrl.map((e) => {
-          this.buildingTitles.push(
-            e.slice(e.indexOf('b'), -4).replaceAll('-', ' ')
-          );
-        });
-      });
-    });
+    this.sub$ = this.route.paramMap.pipe(
+      switchMap((param) => {
+        this.projectId = param.get('id');
+        return this.projectService.getProjects();
+      })
+    );
   }
 
   next() {
@@ -77,9 +63,24 @@ export class ProjectComponent implements OnInit, AfterContentChecked {
   swiperSlideChanged(e: any) {
     // console.log(e);
   }
-  ngOnInit() {}
+
+  ngOnInit() {
+    this.sub$.subscribe((res) => {
+      // this.projects.emit(res);
+      this.project = res.find((e) => this.projectId === e.id);
+      this.coords = res.map((e) => e.coords);
+      this.project?.imgUrl.map((e) => {
+        this.buildingTitles.push(
+          e.slice(e.indexOf('b'), -4).replaceAll('-', ' ')
+        );
+      });
+    });
+  }
 
   ngAfterContentChecked(): void {
     this.swiper = this.swiperRef?.nativeElement.swiper;
+  }
+  ngOnDestroy() {
+    this.sub$.unsubscribe();
   }
 }

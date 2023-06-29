@@ -1,4 +1,4 @@
-<div class="card" [routerLink]="['/', 'project', data.id, data.title]">
+<div class="card" [routerLink]="['/', 'project', project.id, project.title]">
     <div class="card-image">
         <figure class="image is-4by3">
             <img src="../../assets/images/building1.jpg" alt="Placeholder image">
@@ -7,13 +7,13 @@
     <div class="card-content">
         <div class="media">
             <div class="media-content">
-                <p class="title is-4">{{data.title}}</p>
-                <p class="subtitle is-6"> {{data.adress}}</p>
+                <p class="title is-4">{{project.title}}</p>
+                <p class="subtitle is-6"> {{project.adress}}</p>
             </div>
         </div>
 
         <div class="content">
-            {{data.discribtion}}
+            {{project.discribtion}}
             <br>
             <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
         </div>

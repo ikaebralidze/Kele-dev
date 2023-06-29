@@ -20,9 +20,10 @@ import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, NotFoundComponent],
+  declarations: [AppComponent, NavComponent, NotFoundComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

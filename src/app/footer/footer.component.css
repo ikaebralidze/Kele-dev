@@ -1,0 +1,7 @@
+.container {
+  height: 400px;
+  width: 100%;
+  background-color: #316e63;
+  margin: 0;
+  max-width: none !important;
+}

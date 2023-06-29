@@ -4,22 +4,21 @@ import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { HouseSelectionComponent } from './house-selection/house-selection.component';
 import { DropdownButtonComponent } from './dropdown-button/dropdown-button.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ProjectsModule } from '../projects/projects.module';
 import { PlaceholderModule } from '../shared/placeholder/placeholder.module';
-import { TitleMakerPipe } from '../pipes/title-maker.pipe';
+import { FilterProjectsPipe } from '../pipes/filter-projects.pipe';
 
 @NgModule({
   declarations: [
     HomeComponent,
     HouseSelectionComponent,
     DropdownButtonComponent,
+    FilterProjectsPipe,
   ],
   imports: [
     CommonModule,
     SharedModule,
-    // SharedModule,
-    // FormsModule,
     ReactiveFormsModule,
     ProjectsModule,
     PlaceholderModule,

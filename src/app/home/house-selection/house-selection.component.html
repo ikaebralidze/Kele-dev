@@ -1,17 +1,12 @@
 <form class="container" [formGroup]="form" (submit)="onSubmit()" (change)="optionChanged()">
     <h1 class="title">Choose your home</h1>
 
+    <ng-container *ngFor="let item of data; let i= index">
 
 
-    <app-dropdown-button [form]="form.controls[data[0].type]" [data]="data[0]">
-
-    </app-dropdown-button>
-    <app-dropdown-button [form]="form.controls[data[1].type]" [data]="data[1]">
-
-    </app-dropdown-button>
-    <app-dropdown-button [form]="form.controls[data[2].type]" [data]="data[2]">
-
-    </app-dropdown-button>
+        <app-dropdown-button [form]="form.controls[item.type]" [data]="item">
+        </app-dropdown-button>
+    </ng-container>
     <div class="btn">
 
         <button class="button find-button">Find</button>
@@ -21,6 +16,6 @@
 
 <div class="cards">
     <ng-container *ngFor="let listItem of filteredProjects">
-        <app-projects [data]="listItem" *ngIf="showProjects"></app-projects>
+        <app-projects [project]="listItem" *ngIf="showProjects"></app-projects>
     </ng-container>
 </div>

@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Projects } from '../model/projects.modal';
 import { ModalService } from '../Services/modal.service';
-import { FireService } from '../Services/fire.service';
+import { ProjectsService } from '../Services/projects.service';
 
 @Component({
   selector: 'app-nav',
@@ -25,9 +25,9 @@ export class NavComponent implements OnInit, OnDestroy {
   constructor(
     private el: ElementRef,
     private modalService: ModalService,
-    private fireService: FireService
+    private projectService: ProjectsService
   ) {
-    this.fireService.getProjects<Projects>('projects').subscribe((res) => {
+    this.projectService.getProjects().subscribe((res) => {
       this.completeProjects = res.filter((e) => e.status == 'Complete');
       this.currentProjects = res.filter((e) => e.status == 'In Progress');
     });

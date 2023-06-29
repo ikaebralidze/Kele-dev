@@ -11,3 +11,8 @@ export interface IData {
   type: string;
   option: string[];
 }
+
+export enum collectionName {
+  projects = 'projects',
+  news = 'news',
+}
