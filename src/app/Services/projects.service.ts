@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Projects, collectionName } from '../model/projects.modal';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,9 +25,13 @@ export class ProjectsService {
             data.id = e.payload.doc.id;
             return data as Projects;
           });
-        })
+        }),
+        take(1)
       )
-      .subscribe((result) => this.project.next(result));
+      .subscribe({
+        next: (result) => this.project.next(result),
+        error: (error) => console.error(error),
+      });
   }
 
   getProjects() {

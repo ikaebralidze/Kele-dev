@@ -1,4 +1,4 @@
-<section *ngIf="isLoaded" saria-label="Newest Photos">
+<section *ngIf="isLoaded; else bla" saria-label="Newest Photos">
     <div class="carousel">
         <ul>
             <ng-container *ngFor="let item of news; let i = index">
@@ -25,8 +25,7 @@
     <app-house-selection></app-house-selection>
 </section>
 
-
-
-<ng-container *ngIf="!isLoaded">
+<ng-template #bla>
+    <h1>heelo</h1>
     <app-placeholder></app-placeholder>
-</ng-container>
+</ng-template>

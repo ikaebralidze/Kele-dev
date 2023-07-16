@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 export class FilterHousesService {
   readonly data: IData[] = [
     { type: 'city', option: ['Tbilisi', 'Gudauri', 'Bakhmaro'] },
-    { type: 'type', option: ['apartment', 'parking slot', 'office space'] },
+    { type: 'type', option: ['type'] },
     { type: 'projects', option: ['projects'] },
   ];
 
@@ -19,31 +19,37 @@ export class FilterHousesService {
     BakhmaroProjects: ['Bakhmaro N1'],
   };
 
-  public projectList: Projects[] = [];
+  // private typeOptions = ['apartment', 'parking slot', 'office space'];
 
-  filteredProjects = [];
+  public projectList: Projects[] = [];
   constructor(private pojectService: ProjectsService) {
     this.pojectService
       .getProjects()
       .subscribe((res) => (this.projectList = res));
   }
+
+  reset() {
+    this.data[1].option = [];
+
+    this.data[2].option = [];
+  }
+
   filter({ city, type }) {
     let proArr = [];
-
+    // if (city === 'city') {
+    //   this.data[2].option = [];
+    //   console.log(this.data[2], this.data[1]);
+    // }
     this.projectList.forEach((e) => {
       if (city === e.adress) {
         proArr.push(e.discribtion);
       } else return null;
     });
 
-    if (city === 'city') {
-      this.data[1].option = ['type'];
-    }
-
-    this.data[1].option = Array.from(new Set(proArr));
-
     // filtering next select item with previouse peak
     if (city !== 'city') {
+      this.data[1].option = Array.from(new Set(proArr));
+
       this.data[2].option = this.projects.tbilisProjects;
       if (type !== 'type') {
         this.data[2].option = [];

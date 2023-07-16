@@ -9,8 +9,6 @@ import { FilterProjectsPipe } from 'src/app/pipes/filter-projects.pipe';
   selector: 'app-house-selection',
   templateUrl: './house-selection.component.html',
   styleUrls: ['./house-selection.component.css'],
-
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HouseSelectionComponent implements OnInit {
   showProjects = false;
@@ -23,16 +21,13 @@ export class HouseSelectionComponent implements OnInit {
 
   data: IData[] = [];
 
-  private _projectList: Projects[] = [];
   public filteredProjects: Projects[];
-
   constructor(
     private projetService: ProjectsService,
     private filter: FilterHousesService
   ) {
-    this.projetService.getProjects().subscribe((res) => {
-      this._projectList = res;
-      this.filteredProjects = this._projectList;
+    this.projetService.getProjects().subscribe((res: Projects[]) => {
+      this.filteredProjects = res;
     });
   }
 
@@ -46,8 +41,10 @@ export class HouseSelectionComponent implements OnInit {
     const city = this.form.controls.city;
     const project = this.form.controls.projects;
     this.filteredProjects = new FilterProjectsPipe(
-      this.projetService
+      this.projetService, this.filter
     ).transform({ city, type, project });
+    this.optionChanged();
+    // this.data = [];
   }
 
   optionChanged() {

@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private newsService: NewsService) {
     this.newsService.getNews().subscribe((news) => {
+      console.log(this.isLoaded);
+
       this.news = news;
       this.newsId = news.map((e) => e.id);
       this.isLoaded = true;

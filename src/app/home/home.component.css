@@ -86,6 +86,7 @@
   z-index: 2;
   color: rgb(255, 255, 255);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .dot-active {

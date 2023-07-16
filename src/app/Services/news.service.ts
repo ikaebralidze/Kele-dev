@@ -27,7 +27,10 @@ export class NewsService {
           });
         })
       )
-      .subscribe((result) => this.news.next(result));
+      .subscribe({
+        next: (result) => this.news.next(result),
+        error: (err) => console.error(err),
+      });
   }
 
   getNews() {

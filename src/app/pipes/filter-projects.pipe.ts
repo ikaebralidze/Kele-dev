@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Projects } from '../model/projects.modal';
 import { ProjectsService } from '../Services/projects.service';
+import { FilterHousesService } from '../Services/filter-houses.service';
 
 @Pipe({
   name: 'filterProjects',
@@ -11,9 +12,9 @@ export class FilterProjectsPipe implements PipeTransform {
   filteredProjects: Projects[];
 
   constructor(
-    private projectService: ProjectsService
-  ) //  @Inject() projects: Projects[]
-  {
+    private projectService: ProjectsService,
+    private filterService: FilterHousesService
+  ) {
     this.projectService.getProjects().subscribe((res) => {
       this._projectList = res;
       this.filteredProjects = this._projectList;
@@ -24,7 +25,7 @@ export class FilterProjectsPipe implements PipeTransform {
     city: FormControl;
     type: FormControl;
     project: FormControl;
-  } ): Projects[] {
+  }): Projects[] {
     const city = value.city;
     const type = value.type;
     const project = value.project;
@@ -43,9 +44,8 @@ export class FilterProjectsPipe implements PipeTransform {
       type.value === 'type' &&
       project.value === 'projects'
     ) {
-      // this.data[1].option = ['type'];
-
       this.filteredProjects = this._projectList;
+      this.filterService.reset();
       reset();
       return this.filteredProjects;
     } else if (city.value !== 'city') {
@@ -67,6 +67,8 @@ export class FilterProjectsPipe implements PipeTransform {
           );
         }
       }
+
+      this.filterService.reset();
       reset();
     }
     return this.filteredProjects;
