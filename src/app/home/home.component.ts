@@ -9,67 +9,13 @@ import Splide from '@splidejs/splide';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  // imgUrl = [
-  //   '../../assets/images/building1.jpg',
-  //   '../../assets/images/building2.jpg',
-  //   '../../assets/images/building.webp',
-  // ];
-  currentIndex = 0;
-  news: INews[];
-  carousel;
-  newsId: string[];
+export class HomeComponent implements OnInit {
   isLoaded = false;
 
-  constructor(private router: Router, private newsService: NewsService) {
-    this.newsService.getNews().subscribe((news) => {
-      this.news = news;
-      this.newsId = news.map((e) => e.id);
-      this.loading();
-    });
-  }
-  loading() {
-    setTimeout(() => {
-      this.isLoaded = true;
-    }, 1000);
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-    this.carousel = setInterval(() => {
-      this.next();
-    }, 8000);
+  loading(event: boolean) {
+    this.isLoaded = event;
   }
-
-  next() {
-    if (this.currentIndex === this.news.length - 1) {
-      this.currentIndex = 0;
-      return;
-    }
-    this.currentIndex += 1;
-  }
-
-  prev() {
-    if (this.currentIndex === 0) {
-      this.currentIndex = this.news.length - 1;
-      return;
-    }
-    this.currentIndex -= 1;
-  }
-
-  dotClicked(index: number) {
-    clearTimeout(this.carousel);
-
-    this.currentIndex = index;
-    this.carousel = setInterval(() => {
-      this.next();
-    }, 8000);
-  }
-
-  toNewsPage(index: number) {
-    this.router.navigate(['/', 'news', this.news[index].title]);
-  }
-
-  ngOnDestroy(): void {
-    clearTimeout(this.carousel);
-  }
+  ngOnInit(): void {}
 }

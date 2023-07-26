@@ -1,32 +1,7 @@
-<app-slider></app-slider>
+<app-slider (loading)="loading($event)"></app-slider>
 <ng-container *ngIf="isLoaded; else placeholder">
-
     <app-house-selection></app-house-selection>
 </ng-container>
-<!-- <section *ngIf="isLoaded; else bla" saria-label="Newest Photos">
-    <div class="carousel">
-        <ul>
-            <ng-container *ngFor="let item of news; let i = index">
-                <li class="slide" [ngClass]="{'slide-active': i === currentIndex }">
-                    <img [src]="item.imgUrl" alt="">
-                    <div class="news-container">
-
-                        <h1 class="title"> {{ item.title | titleMaker }} </h1>
-                        <p class="discription"> {{item.discription}} </p>
-                    </div>
-                    <button class="btn-news button is-medium" (click)="toNewsPage(currentIndex)">See more</button>
-                </li>
-
-            </ng-container>
-        </ul>
-        <ul class="dot-list">
-            <ng-container *ngFor="let img of news; let i = index">
-                <li class="dot" [ngClass]="{'dot-active': i=== currentIndex}" (click)="dotClicked(i)">&#x2022;</li>
-            </ng-container>
-        </ul>
-    </div>
-</section>
- -->
 
 <ng-template #placeholder>
     <app-placeholder></app-placeholder>

@@ -2,8 +2,10 @@ import {
   AfterContentInit,
   Component,
   ElementRef,
+  EventEmitter,
   HostListener,
   Input,
+  Output,
   Renderer2,
   ViewChild,
 } from '@angular/core';
@@ -19,6 +21,8 @@ import { INews } from 'src/app/model/news.model';
 })
 export class SliderComponent {
   newses: INews[];
+  @Output() loading = new EventEmitter<boolean>();
+  loaded = false;
 
   // @ViewChild('carousel', { static: false }) carouselRef: ElementRef;
   constructor(
@@ -32,68 +36,17 @@ export class SliderComponent {
     slidesToScroll: 1,
     infinite: true,
   };
-  navigateToNews(s: string) {
-    console.log(s);
-  }
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
-    if (window.innerWidth > 768) {
-      this.renderer.removeClass(
-        this.el.nativeElement.querySelector('.button'),
-
-        'is-small'
-      );
-    } else {
-      this.renderer.addClass(
-        this.el.nativeElement.querySelector('.title'),
-        'tit'
-      );
-      this.renderer.addClass(
-        this.el.nativeElement.querySelector('.button'),
-        'is-small'
-      );
-    }
+  navigateToNews(title: string) {
+    this.router.navigate(['news', title]);
   }
 
   ngOnInit() {
     this.newsService.getNews().subscribe((news) => {
       this.newses = news;
+      this.loaded = true;
+      setTimeout(() => {
+        this.loading.emit(this.loaded);
+      }, 1000);
     });
   }
-  // ngOnInit() {
-  //   this.newsService.getNews().subscribe((news) => {
-  //     this.newses = news;
-  //     const doc = this.el.nativeElement.querySelector('.splide__list');
-
-  //     this.newses.forEach((e) => {
-  //       const li = document.createElement('li');
-
-  //       li.classList.add('splide__slide');
-
-  //       li.innerHTML = `
-  //       <img src="${e.imgUrl}" style="width: 100%; height: 100%;"  alt="">
-  //       <h1 class="title" style="" >${e.title.replaceAll('-', ' ')}
-  //       </h1>
-
-  //       <button id="${
-  //         'see-more' + e.id
-  //       }" style="background-color: #ff8551; border: none; color: white; position: absolute; top:70%; right:10%" class="button">See more</button>
-  //       `;
-  //       doc.appendChild(li);
-
-  //       const btn = document.querySelector('#see-more' + e.id);
-
-  //       btn.addEventListener('click', (event) => {
-  //         this.router.navigate(['/', 'news', e.title]);
-  //       });
-
-  //       new Splide('.splide').mount();
-  //       new Splide('#image-carousel').mount();
-  //       new Splide('.splide', {
-  //         perPage: 1,
-  //         focus: 0,
-  //       }).mount();
-  //     });
-  //   });
-  // }
 }
