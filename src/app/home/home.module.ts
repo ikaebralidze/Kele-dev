@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { HouseSelectionComponent } from './house-selection/house-selection.component';
@@ -22,6 +22,7 @@ import { FilterProjectsPipe } from '../pipes/filter-projects.pipe';
     ReactiveFormsModule,
     ProjectsModule,
     PlaceholderModule,
+    NgOptimizedImage,
   ],
 })
 export class HomeModule {}

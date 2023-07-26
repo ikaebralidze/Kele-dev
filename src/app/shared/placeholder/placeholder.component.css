@@ -4,6 +4,9 @@
   position: absolute;
 
   width: 100%;
+
+  margin-top: 68px;
+  z-index: 100;
 }
 
 .head-ph {
@@ -14,7 +17,6 @@
 
 .container {
   width: 100%;
-  margin-top: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,0 +1,7 @@
+<ngx-slick-carousel class="image-carousel" [config]="carouselConfig">
+    <li ngxSlickItem *ngFor="let news of newses">
+        <img [src]="news.imgUrl" alt="">
+        <h1 class="title tit">{{ news.title.replaceAll('-', ' ') }}</h1>
+        <button class="btn-news button " (click)="navigateToNews(news.title)">See more</button>
+    </li>
+</ngx-slick-carousel>

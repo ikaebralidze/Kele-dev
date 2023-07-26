@@ -41,7 +41,9 @@
   width: 100%;
   display: grid;
   gap: 2rem;
-
+  position: relative;
+  top: -30px;
+  background-color: white;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -53,6 +55,9 @@
 }
 
 @media screen and (max-width: 1023px) {
+  :host {
+    top: -35px;
+  }
   .container {
     justify-content: center;
     margin: auto;
@@ -71,6 +76,7 @@
   }
   .cards {
     grid-template-columns: 1fr 1fr;
+    top: 0;
   }
   .title {
     text-align: center;

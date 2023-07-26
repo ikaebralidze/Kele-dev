@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NewsService } from '../Services/news.service';
 import { INews } from '../model/news.model';
+import Splide from '@splidejs/splide';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,11 @@ import { INews } from '../model/news.model';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  imgUrl = [
-    '../../assets/images/building1.jpg',
-    '../../assets/images/building2.jpg',
-    '../../assets/images/building.webp',
-  ];
+  // imgUrl = [
+  //   '../../assets/images/building1.jpg',
+  //   '../../assets/images/building2.jpg',
+  //   '../../assets/images/building.webp',
+  // ];
   currentIndex = 0;
   news: INews[];
   carousel;
@@ -22,12 +23,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private newsService: NewsService) {
     this.newsService.getNews().subscribe((news) => {
-      console.log(this.isLoaded);
-
       this.news = news;
       this.newsId = news.map((e) => e.id);
-      this.isLoaded = true;
+      this.loading();
     });
+  }
+  loading() {
+    setTimeout(() => {
+      this.isLoaded = true;
+    }, 1000);
   }
 
   ngOnInit(): void {

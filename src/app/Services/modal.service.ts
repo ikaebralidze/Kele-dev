@@ -12,6 +12,11 @@ export class ModalService {
 
   toggleModal() {
     this.isModalHiden = !this.isModalHiden;
+    if (this.isModalHiden) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
   }
 
   addUser(user: IUser) {

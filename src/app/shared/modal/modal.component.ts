@@ -30,6 +30,7 @@ export class ModalComponent implements OnInit {
   });
 
   onClick() {
+    // document.body.classList.add('modal-open');
     this.modalService.toggleModal();
     this.isModalHiden = this.modalService.isModalHiden;
   }

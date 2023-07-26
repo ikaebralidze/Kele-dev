@@ -81,13 +81,14 @@
                 <div class="navbar-dropdown">
                     <ng-container *ngFor="let project of completeProjects">
                         <a class="navbar-item"
-                            [routerLink]="['/', 'project', project.id, project.title]">{{project.title}}</a>
+                            [routerLink]="['/', 'project', project.id, project.title]">{{project.title}}
+                        </a>
                     </ng-container>
 
                 </div>
             </div>
             <a class="navbar-item" routerLink="news">
-                all news
+                News
             </a>
             <a class="navbar-item" routerLink="about-us">
                 About Company

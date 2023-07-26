@@ -21,9 +21,16 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { FooterComponent } from './footer/footer.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, NotFoundComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    NotFoundComponent,
+    FooterComponent,
+    AboutUsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,6 +40,7 @@ import { FooterComponent } from './footer/footer.component';
     IonicModule,
     InputComponent,
     ModalComponent,
+    SlickCarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

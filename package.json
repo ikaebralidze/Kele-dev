@@ -20,10 +20,13 @@
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
     "@ionic/angular": "^7.0.9",
+    "@splidejs/splide": "^4.1.4",
     "bulma": "^0.9.4",
     "leaflet": "^1.9.4",
+    "ngx-slick-carousel": "^15.0.0",
     "rxjs": "~7.8.0",
     "semantic-ui-css": "^2.5.0",
+    "slick-carousel": "^1.8.1",
     "swiper": "^9.3.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
